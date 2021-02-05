@@ -1,0 +1,23 @@
+server:
+  port: 8002
+
+spring:
+  application:
+    name: @artifactId@
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.118:8848
+      config:
+        server-addr: 192.168.0.118:8848
+dubbo:
+  cloud:
+    subscribed-services: nic-cloud-service-user
+  registry:
+    address: nacos://192.168.0.118:8848
+    group: @artifactId@
+  protocol:
+    name: dubbo
+    port: -1

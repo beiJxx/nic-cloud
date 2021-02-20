@@ -6,20 +6,12 @@
 
     <parent>
         <groupId>com.nic.cloud</groupId>
-        <artifactId>nic-cloud</artifactId>
+        <artifactId>nic-cloud-service-api</artifactId>
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>nic-cloud-commons</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>nic-cloud-service-api-admin</artifactId>
 
     <name>${project.artifactId}</name>
-
-    <modules>
-        <module>base</module>
-        <module>feign</module>
-        <module>starter</module>
-    </modules>
-
 
 </project>

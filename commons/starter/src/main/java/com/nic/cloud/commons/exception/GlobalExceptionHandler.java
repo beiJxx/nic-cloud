@@ -1,6 +1,5 @@
-package com.nic.cloud.commons.base.exception;
+package com.nic.cloud.commons.exception;
 
-import cn.hutool.core.util.ObjectUtil;
 import com.nic.cloud.commons.base.api.ApiCode;
 import com.nic.cloud.commons.base.api.ApiResult;
 import com.nic.cloud.commons.base.utils.MessageUtil;
@@ -38,7 +37,7 @@ public class GlobalExceptionHandler {
 				.stream()
 				.map(ObjectError::getDefaultMessage)
 				.collect(Collectors.joining(","));
-		return response(ApiCode.PARAM_ERROR, request, message);
+		return response(ApiCode.PARAM_ERROR.getCode(),request,message,message);
 	}
 
 	/**
@@ -51,7 +50,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler(value = {HttpMessageConversionException.class})
 	public ApiResult banParams(HttpMessageConversionException ex, HttpServletRequest request) {
 		log.error("[GlobalExceptionHandler >>> HttpMessageConversionException]", ex);
-		return response(ApiCode.PARAM_LACK, request, "");
+		return response(ApiCode.PARAM_LACK.getCode(),request,ex.getMessage());
 	}
 
 	/**
@@ -64,7 +63,7 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler({BizException.class})
 	public ApiResult openException(BizException ex, HttpServletRequest request) {
 		log.error("[GlobalExceptionHandler >>> BizException]", ex);
-		return response(ex.getCode(), request, ex);
+		return response(ex.getCode(), request, ex.getMessage(),ex.getMessage());
 	}
 
 	/**
@@ -77,15 +76,13 @@ public class GlobalExceptionHandler {
 	@ExceptionHandler({Exception.class})
 	public ApiResult exception(Exception ex, HttpServletRequest request) {
 		log.error("[GlobalExceptionHandler >>> Exception]", ex);
-		return response(ApiCode.SERVER_ERROR, request, ex.getMessage());
+		return response(ApiCode.SERVER_ERROR.getCode(), request, ex.getMessage());
 	}
 
-	private ApiResult response(int code, HttpServletRequest request, Exception ex) {
-		return MessageUtil.buildResult(code, ex.getMessage(), request.getMethod(), request.getRequestURI());
-	}
-
-	private ApiResult response(ApiCode apiCode, HttpServletRequest request, String message) {
-		return MessageUtil.buildResult(apiCode.getCode(), ObjectUtil.isNull(message) ? apiCode.getMessage() : message, request.getMethod(), request.getRequestURI());
+	private ApiResult response(int code, HttpServletRequest request, String detail, Object... message){
+		return ApiResult
+				.error(ApiCode.getResultEnum(code), message)
+				.setDetail(MessageUtil.buildDetailMessage(request.getMethod(), request.getRequestURI(), detail));
 	}
 
 

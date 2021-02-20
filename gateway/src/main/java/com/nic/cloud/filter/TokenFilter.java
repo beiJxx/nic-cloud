@@ -2,7 +2,7 @@ package com.nic.cloud.filter;
 
 import cn.hutool.core.util.ObjectUtil;
 import com.nic.cloud.commons.base.api.ApiCode;
-import com.nic.cloud.commons.base.exception.BizException;
+import com.nic.cloud.commons.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilterChain;
 import org.springframework.cloud.gateway.filter.GlobalFilter;

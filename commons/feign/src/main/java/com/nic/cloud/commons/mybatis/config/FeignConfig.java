@@ -1,4 +1,4 @@
-package com.nic.cloud.commons.feign.config;
+package com.nic.cloud.commons.mybatis.config;
 
 /**
  * Description:

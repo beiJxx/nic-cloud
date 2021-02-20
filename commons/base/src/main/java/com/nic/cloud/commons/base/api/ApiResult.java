@@ -1,7 +1,9 @@
 package com.nic.cloud.commons.base.api;
 
+import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.annotation.JSONField;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -109,13 +111,23 @@ public class ApiResult<T> implements Serializable {
 		return new ApiResult().setCode(code).setMessage(message).setDetail(detail);
 	}
 
+	public static String formatMessage(ApiCode apiCode, String... message) {
+		return MessageFormat.format(apiCode.getMessage(), Arrays.stream(message).map(Object::toString).toArray());
+	}
+
+	public static void main(String[] args) {
+		ApiResult error = error(ApiCode.FAIL);
+		System.out.println(JSONUtil.toJsonStr(error));
+	}
+
 	public static ApiResult error(ApiCode apiCode, Object... format) {
 		String message = MessageFormat.format(apiCode.getMessage(), Arrays.stream(format).map(Object::toString).toArray());
 		return result(apiCode.getCode(), message);
 	}
 
-	public static String formatMessage(ApiCode apiCode, String... message) {
-		return MessageFormat.format(apiCode.getMessage(), Arrays.stream(message).map(Object::toString).toArray());
+	@JsonIgnore
+	public boolean isSuccess() {
+		return ApiCode.SUCCESS.getCode() == this.getCode();
 	}
 
 	public ApiResult message(String messageFormat, Object... args) {

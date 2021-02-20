@@ -17,6 +17,7 @@
 
     <modules>
         <module>service-api-user</module>
+        <module>service-api-admin</module>
     </modules>
     <dependencies>
         <dependency>

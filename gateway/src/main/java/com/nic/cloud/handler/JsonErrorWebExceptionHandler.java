@@ -2,8 +2,8 @@ package com.nic.cloud.handler;
 
 import cn.hutool.http.HttpStatus;
 import com.nic.cloud.commons.base.api.ApiCode;
-import com.nic.cloud.commons.base.exception.BizException;
 import com.nic.cloud.commons.base.utils.MessageUtil;
+import com.nic.cloud.commons.exception.BizException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.web.ErrorProperties;
 import org.springframework.boot.autoconfigure.web.ResourceProperties;

@@ -1,4 +1,4 @@
-package com.nic.cloud.commons.base.exception;
+package com.nic.cloud.commons.exception;
 
 import com.nic.cloud.commons.base.api.ApiCode;
 import lombok.Data;

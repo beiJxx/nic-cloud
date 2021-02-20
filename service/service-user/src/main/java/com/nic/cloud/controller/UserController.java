@@ -9,6 +9,8 @@ import com.nic.cloud.commons.base.api.ApiResult;
 import com.nic.cloud.commons.base.login.LoginRequestDTO;
 import com.nic.cloud.commons.base.utils.RedisUtil;
 import com.nic.cloud.feign.UserFeignApi;
+import com.nic.cloud.pojo.dto.UserDTO;
+import com.nic.cloud.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +28,8 @@ import javax.validation.Valid;
 @Slf4j
 public class UserController {
 
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private UserFeignApi userFeignApi;
 	@Autowired
@@ -56,6 +60,11 @@ public class UserController {
 		return userFeignApi.getUser();
 	}
 
+	@PostMapping("")
+	public ApiResult addUserAndRole(@RequestBody UserDTO userDTO) {
+		return ApiResult.result(userService.addUserAndRole(userDTO));
+	}
+
 	@PostMapping("login")
 	public ApiResult login(@RequestBody @Valid LoginRequestDTO loginRequestDTO) {
 		log.info("loginRequest:{}", JSONUtil.toJsonStr(loginRequestDTO));
@@ -64,7 +73,7 @@ public class UserController {
 			redisUtil.remove(oriToken);
 		}
 		String newToken = SecureUtil.md5("1qaz!QAZ2wsx@WSX" + loginRequestDTO.getUsername() + DateUtil.thisMillisecond());
-		String autorities = "/get:/user/info1,/get:/user/info2,/get:/user/info3/*,/get:/admin/info";
+		String autorities = "/get:/user/info1,/get:/user/info2,/get:/user/info3/*,/get:/admin/info,/post:/user";
 		redisUtil.set(newToken, autorities, 30L);
 		redisUtil.set(loginRequestDTO.getUsername(), newToken, 30L);
 		JSONObject obj = JSONUtil.createObj();

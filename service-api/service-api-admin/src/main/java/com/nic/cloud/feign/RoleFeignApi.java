@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.PostMapping;
  * @author james
  * @date 2021-02-03 15:36
  */
-@FeignClient(value = "nic-cloud-service-user")
-public interface UserFeignApi {
+@FeignClient(value = "nic-cloud-service-admin")
+public interface RoleFeignApi {
 
-	@GetMapping("/feign/user/info")
-	ApiResult getUser();
+	@GetMapping("/feign/role/info")
+	ApiResult getRole();
 
-	@PostMapping("/feign/user/info")
-	ApiResult addUser();
+	@PostMapping("/feign/role/info")
+	ApiResult addRole();
 
 }

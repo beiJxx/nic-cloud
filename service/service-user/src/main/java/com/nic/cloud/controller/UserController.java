@@ -66,7 +66,7 @@ public class UserController {
 		String newToken = SecureUtil.md5("1qaz!QAZ2wsx@WSX" + loginRequestDTO.getUsername() + DateUtil.thisMillisecond());
 		String autorities = "/get:/user/info1,/get:/user/info2,/get:/user/info3/*,/get:/admin/info";
 		redisUtil.set(newToken, autorities, 30L);
-		redisUtil.set(loginRequestDTO.getUsername(), newToken);
+		redisUtil.set(loginRequestDTO.getUsername(), newToken, 30L);
 		JSONObject obj = JSONUtil.createObj();
 		obj.putOpt("token", newToken);
 		return ApiResult.result(obj);

@@ -20,11 +20,6 @@
             <artifactId>nic-cloud-service-api-user</artifactId>
             <version>1.0.0</version>
         </dependency>
-        <!-- Dubbo Spring Cloud Starter -->
-        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-dubbo</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

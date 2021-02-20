@@ -19,10 +19,11 @@ public enum ApiCode {
 	TOKEN_LACK(1003, "token传值有误"),
 	USERNAME_PASSWORD_NOT_MATCH(1004, "用户名密码不匹配"),
 	AUTHENTICATION_FAILED(401, "token无效，请重新登陆"),
-	AUTHORIZATION_FAILED(403, "禁止访问");
+	AUTHORIZATION_FAILED(403, "禁止访问"),
+	NOT_FOUND(404, "路径有误");
 
 	private int code;
-	private String msg;
+	private String message;
 
 	public static ApiCode getResultEnum(int code) {
 		for (ApiCode type : ApiCode.values()) {
@@ -41,11 +42,11 @@ public enum ApiCode {
 		this.code = code;
 	}
 
-	public String getMsg() {
-		return msg;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setMsg(String msg) {
-		this.msg = msg;
+	public void setMessage(String message) {
+		this.message = message;
 	}
 }

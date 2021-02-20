@@ -1,5 +1,6 @@
 server:
-  port: 8101
+  port: 8001
+  max-http-header-size: 81920
 
 spring:
   application:
@@ -12,16 +13,6 @@ spring:
         server-addr: 192.168.0.118:8848
       config:
         server-addr: 192.168.0.118:8848
-dubbo:
-  scan:
-    base-packages: com.nic.cloud.controller.dubbo
-  protocol:
-    name: dubbo
-    port: -1
-  registry:
-    address: nacos://192.168.0.118:8848
-    group: @artifactId@
-  provider:
-    loadbalance: roundrobin
-  cloud:
-    subscribed-services: @artifactId@
+  redis:
+    host: 192.168.0.118
+    password: 123456

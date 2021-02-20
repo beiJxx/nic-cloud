@@ -26,14 +26,6 @@ spring:
         locator:
           enabled: true
           lower-case-service-id: true
-dubbo:
-  cloud:
-    subscribed-services: nic-cloud-service-user
-  registry:
-    address: nacos://192.168.0.118:8848
-    group: @artifactId@
-  protocol:
-    name: dubbo
-    port: -1
-  consumer:
-    loadbalance: roundrobin
+  redis:
+    host: 192.168.0.118
+    password: 123456

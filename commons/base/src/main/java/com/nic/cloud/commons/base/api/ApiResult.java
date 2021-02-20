@@ -42,7 +42,12 @@ public class ApiResult<T> implements Serializable {
 	 * 响应消息
 	 */
 	@ApiModelProperty(value = "响应消息")
-	private String msg;
+	private String message;
+	/**
+	 * 响应详情
+	 */
+	@ApiModelProperty(value = "响应详情")
+	private String detail;
 
 	/**
 	 * 响应数据
@@ -66,22 +71,22 @@ public class ApiResult<T> implements Serializable {
 			return failed();
 		} else if (flag instanceof ApiCode) {
 			ApiCode apiCode = (ApiCode) flag;
-			return result(apiCode.getCode(), apiCode.getMsg());
+			return result(apiCode.getCode(), apiCode.getMessage());
 		} else {
 			return ok().data(flag);
 		}
 	}
 
 	public static ApiResult ok() {
-		return new ApiResult().code(ApiCode.SUCCESS.getCode()).msg(ApiCode.SUCCESS.getMsg());
+		return new ApiResult().code(ApiCode.SUCCESS.getCode()).message(ApiCode.SUCCESS.getMessage());
 	}
 
 	public static ApiResult failed() {
-		return new ApiResult().code(ApiCode.FAIL.getCode()).msg(ApiCode.FAIL.getMsg());
+		return new ApiResult().code(ApiCode.FAIL.getCode()).message(ApiCode.FAIL.getMessage());
 	}
 
-	public static ApiResult result(int code, String msg) {
-		return new ApiResult().setCode(code).setMsg(msg);
+	public static ApiResult result(int code, String message) {
+		return new ApiResult().setCode(code).setMessage(message);
 	}
 
 	public ApiResult data(T data) {
@@ -89,9 +94,9 @@ public class ApiResult<T> implements Serializable {
 		return this;
 	}
 
-	public ApiResult msg(String msg) {
-//		this.msg = i18n(ApiCode.getResultEnum(this.code).getMsg(), msg);
-		this.msg = msg;
+	public ApiResult message(String message) {
+//		this.message = i18n(ApiCode.getResultEnum(this.code).getMessage(), message);
+		this.message = message;
 		return this;
 	}
 
@@ -100,21 +105,29 @@ public class ApiResult<T> implements Serializable {
 		return this;
 	}
 
-	public static ApiResult error(ApiCode apiCode, Object... format) {
-		String msg = MessageFormat.format(apiCode.getMsg(), Arrays.stream(format).map(Object::toString).toArray());
-		return result(apiCode.getCode(), msg);
+	public static ApiResult result(int code, String message, String detail) {
+		return new ApiResult().setCode(code).setMessage(message).setDetail(detail);
 	}
 
-	public ApiResult msg(String msgFormat, Object... args) {
-		if (StringUtils.isEmpty(msgFormat)) {
-			msgFormat = ApiCode.getResultEnum(this.code).getMsg();
+	public static ApiResult error(ApiCode apiCode, Object... format) {
+		String message = MessageFormat.format(apiCode.getMessage(), Arrays.stream(format).map(Object::toString).toArray());
+		return result(apiCode.getCode(), message);
+	}
+
+	public static String formatMessage(ApiCode apiCode, String... message) {
+		return MessageFormat.format(apiCode.getMessage(), Arrays.stream(message).map(Object::toString).toArray());
+	}
+
+	public ApiResult message(String messageFormat, Object... args) {
+		if (StringUtils.isEmpty(messageFormat)) {
+			messageFormat = ApiCode.getResultEnum(this.code).getMessage();
 		}
-		this.msg = MessageFormat.format(msgFormat, Arrays.stream(args).map(Object::toString).toArray());
+		this.message = MessageFormat.format(messageFormat, Arrays.stream(args).map(Object::toString).toArray());
 		return this;
 	}
 
-	public ApiResult msg(Object... args) {
-		this.msg = MessageFormat.format(ApiCode.getResultEnum(this.code).getMsg(), Arrays.stream(args).map(Object::toString).toArray());
+	public ApiResult message(Object... args) {
+		this.message = MessageFormat.format(ApiCode.getResultEnum(this.code).getMessage(), Arrays.stream(args).map(Object::toString).toArray());
 		return this;
 	}
 
@@ -122,11 +135,11 @@ public class ApiResult<T> implements Serializable {
 	public String toString() {
 		return "ApiResult{" +
 				"code=" + code +
-				", msg='" + msg + '\'' +
+				", message='" + message + '\'' +
+				", detail='" + detail + '\'' +
 				", data=" + data +
 				", time=" + time +
 				'}';
 	}
-
 }
 

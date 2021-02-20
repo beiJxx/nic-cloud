@@ -17,6 +17,7 @@
 
     <modules>
         <module>base</module>
+        <module>exception</module>
         <module>feign</module>
     </modules>
 

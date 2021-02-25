@@ -1,0 +1,24 @@
+server:
+  port: 8003
+
+spring:
+  application:
+    name: @artifactId@
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.0.118:8848
+      config:
+        server-addr: 192.168.0.118:8848
+  redis:
+    host: 192.168.0.118
+    password: 123456
+  datasource:
+    url: jdbc:mysql://192.168.0.118:3306/nic_cloud
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+mqtt:
+  username: 123

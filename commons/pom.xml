@@ -17,8 +17,8 @@
 
     <modules>
         <module>base</module>
-        <module>feign</module>
         <module>starter</module>
+        <module>security</module>
     </modules>
 
 

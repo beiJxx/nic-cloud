@@ -46,7 +46,7 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
 			return chain.filter(exchange);
 		}
 		HttpHeaders headers = exchange.getRequest().getHeaders();
-		String token = headers.getFirst(Constants.TOKEN);
+		String token = headers.getFirst(Constants.HEADER_TOKEN);
 		log.info("token:{}", token);
 		if (ObjectUtil.isNull(token)) {
 			throw new BizException(ApiCode.TOKEN_LACK);
@@ -59,6 +59,11 @@ public class AuthorizeFilter implements GlobalFilter, Ordered {
 			if (noneMatch) {
 				throw new BizException(ApiCode.AUTHORIZATION_FAILED);
 			}
+
+			String[] split = token.split("@");
+			String username = split[1];
+			exchange.getAttributes().put("username", username);
+//			RequestContextHolder.currentRequestAttributes().setAttribute("username", username, 0);
 			//认证成功则续签
 			redisUtil.extendExpire(token, 30L);
 		}

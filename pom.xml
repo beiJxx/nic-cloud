@@ -10,7 +10,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>gateway</module>
+        <module>gateway3</module>
         <module>commons</module>
         <module>service</module>
         <module>service-api</module>
@@ -41,6 +41,8 @@
         <swagger-boot.version>1.9.1.RELEASE</swagger-boot.version>
         <fastjson.version>1.2.58</fastjson.version>
         <hibernate-validator.version>7.0.1.Final</hibernate-validator.version>
+        <bcprov-jdk16.version>1.46</bcprov-jdk16.version>
+        <jjwt.version>0.9.1</jjwt.version>
     </properties>
 
     <dependencies>
@@ -128,6 +130,16 @@
                 <artifactId>hibernate-validator</artifactId>
                 <version>${hibernate-validator.version}</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk16</artifactId>
+                <version>${bcprov-jdk16.version}</version>
             </dependency>
 
         </dependencies>

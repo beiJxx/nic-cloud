@@ -1,0 +1,41 @@
+server:
+  port: 7002
+
+spring:
+  application:
+    name: @artifactId@
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.0.118:8848
+      discovery:
+        server-addr: 192.168.0.118:8848
+    gateway:
+      routes:
+        - id: service-user
+          uri: lb://nic-cloud-service-user
+          predicates:
+            - Path=/web/tenant/**
+        - id: service-admin
+          uri: lb://nic-cloud-service-admin
+          predicates:
+            - Path=/admin/**
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+      httpclient:
+        connect-timeout: 10000
+  redis:
+    host: 192.168.0.118
+    password: 123456
+ifc:
+  token-ignore-urls:
+    - /**/login
+    - /acs/**
+  sign-ignore-urls:
+    - /**/login
+    - /web/**
+  token-expire: 30

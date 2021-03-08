@@ -15,6 +15,7 @@ import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.http.server.reactive.ServerHttpResponseDecorator;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -24,6 +25,7 @@ import java.net.URI;
 import java.nio.CharBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
@@ -99,7 +101,13 @@ public class LogFilter implements GlobalFilter, Ordered {
 						normalMsg.append(RESPONSE_TAIL);
 						log.info(normalMsg.toString());
 						return bufferFactory.wrap(content);
-					}));
+					}))
+							.doFinally(s -> {
+								log.info("------------------------------------------------");
+								log.info(Objects.requireNonNull(RequestContextHolder.currentRequestAttributes().getAttribute("username", 0)).toString());
+								log.info("------------------------------------------------");
+//								UserInfoContext.remove();
+							});
 				}
 				return super.writeWith(body); // if body is not a flux. never got there.
 			}

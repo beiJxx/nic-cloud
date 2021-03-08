@@ -9,7 +9,7 @@
             <entry key="com.zeroturnaround.jrebel.remoting.DeleteUnindexedFiles" value="false" />
             <entry key="com.zeroturnaround.jrebel.remoting.ModuleRemoteServerSelection" value="off" />
             <entry key="jrebelEnabled" value="true" />
-            <entry key="lastExternalPluginCheckTime" value="1612418584500" />
+            <entry key="lastExternalPluginCheckTime" value="1615165542081" />
           </map>
         </option>
       </configuration>
@@ -184,7 +184,9 @@
     <orderEntry type="library" name="Maven: io.lettuce:lettuce-core:5.3.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.51.Final" level="project" />
     <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.51.Final" level="project" />
-    <orderEntry type="module" module-name="nic-cloud-commons-feign" />
+    <orderEntry type="library" name="Maven: io.jsonwebtoken:jjwt:0.9.1" level="project" />
+    <orderEntry type="library" name="Maven: org.bouncycastle:bcprov-jdk16:1.46" level="project" />
+    <orderEntry type="library" name="Maven: com.nic.cloud:nic-cloud-commons-feign:1.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-starter-openfeign:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.cloud:spring-cloud-openfeign-core:2.2.5.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-aop:2.3.2.RELEASE" level="project" />

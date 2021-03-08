@@ -8,6 +8,10 @@ package com.nic.cloud.commons.base;
  */
 public class Constants {
 
-	public static final String TOKEN = "ifc-token";
+	public static final String HEADER_TOKEN = "ifc_token";
+	public static final String HEADER_USERNAME = "ifc_username";
+
+	public static final String LOGIN_TYPE_AGENT = "1";
+	public static final String LOGIN_TYPE_TENANT = "2";
 
 }

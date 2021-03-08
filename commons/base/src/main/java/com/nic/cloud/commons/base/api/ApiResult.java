@@ -12,7 +12,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
 import java.text.MessageFormat;
@@ -97,8 +97,9 @@ public class ApiResult<T> implements Serializable {
 	}
 
 	public ApiResult message(String message) {
-//		this.message = i18n(ApiCode.getResultEnum(this.code).getMessage(), message);
-		this.message = message;
+		if (StringUtils.isNotEmpty(message)) {
+			this.message = message;
+		}
 		return this;
 	}
 
@@ -123,6 +124,11 @@ public class ApiResult<T> implements Serializable {
 	public static ApiResult error(ApiCode apiCode, Object... format) {
 		String message = MessageFormat.format(apiCode.getMessage(), Arrays.stream(format).map(Object::toString).toArray());
 		return result(apiCode.getCode(), message);
+	}
+
+	public ApiResult detail(String detail) {
+		this.detail = detail;
+		return this;
 	}
 
 	@JsonIgnore

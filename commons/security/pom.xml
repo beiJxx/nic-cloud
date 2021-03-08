@@ -10,15 +10,20 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>nic-cloud-commons-feign</artifactId>
+    <artifactId>nic-cloud-commons-security</artifactId>
 
     <name>${project.artifactId}</name>
 
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <groupId>com.nic.cloud</groupId>
+            <artifactId>nic-cloud-commons-starter</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
     </dependencies>
 </project>

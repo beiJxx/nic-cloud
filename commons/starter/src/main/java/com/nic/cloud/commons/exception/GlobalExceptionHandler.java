@@ -5,12 +5,12 @@ import com.nic.cloud.commons.base.api.ApiResult;
 import com.nic.cloud.commons.base.utils.MessageUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageConversionException;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.stream.Collectors;
 
 /**
@@ -31,7 +31,7 @@ public class GlobalExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = {MethodArgumentNotValidException.class})
-	public ApiResult badRequest(MethodArgumentNotValidException ex, HttpServletRequest request) {
+	public ApiResult badRequest(MethodArgumentNotValidException ex, ServerHttpRequest request) {
 		log.error("[GlobalExceptionHandler >>> MethodArgumentNotValidException]", ex);
 		String message = ex.getBindingResult().getAllErrors()
 				.stream()
@@ -48,7 +48,7 @@ public class GlobalExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(value = {HttpMessageConversionException.class})
-	public ApiResult banParams(HttpMessageConversionException ex, HttpServletRequest request) {
+	public ApiResult banParams(HttpMessageConversionException ex, ServerHttpRequest request) {
 		log.error("[GlobalExceptionHandler >>> HttpMessageConversionException]", ex);
 		return response(ApiCode.PARAM_LACK.getCode(),request,ex.getMessage());
 	}
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler({BizException.class})
-	public ApiResult openException(BizException ex, HttpServletRequest request) {
+	public ApiResult openException(BizException ex, ServerHttpRequest request) {
 		log.error("[GlobalExceptionHandler >>> BizException]", ex);
 		return response(ex.getCode(), request, ex.getMessage(),ex.getMessage());
 	}
@@ -74,15 +74,15 @@ public class GlobalExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler({Exception.class})
-	public ApiResult exception(Exception ex, HttpServletRequest request) {
+	public ApiResult exception(Exception ex, ServerHttpRequest request) {
 		log.error("[GlobalExceptionHandler >>> Exception]", ex);
 		return response(ApiCode.SERVER_ERROR.getCode(), request, ex.getMessage());
 	}
 
-	private ApiResult response(int code, HttpServletRequest request, String detail, Object... message){
+	private ApiResult response(int code, ServerHttpRequest request, String detail, Object... message){
 		return ApiResult
 				.error(ApiCode.getResultEnum(code), message)
-				.setDetail(MessageUtil.buildDetailMessage(request.getMethod(), request.getRequestURI(), detail));
+				.setDetail(MessageUtil.buildDetailMessage(request.getMethodValue(), request.getURI().getPath(), detail));
 	}
 
 

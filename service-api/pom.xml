@@ -23,12 +23,12 @@
         <dependency>
             <groupId>com.nic.cloud</groupId>
             <artifactId>nic-cloud-commons-base</artifactId>
-            <version>1.0.0</version>
+            <version>${version}</version>
         </dependency>
         <dependency>
             <groupId>com.nic.cloud</groupId>
             <artifactId>nic-cloud-commons-feign</artifactId>
-            <version>1.0.0</version>
+            <version>${version}</version>
         </dependency>
     </dependencies>
 </project>

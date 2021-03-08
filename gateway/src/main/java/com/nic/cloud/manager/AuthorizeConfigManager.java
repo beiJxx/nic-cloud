@@ -33,7 +33,8 @@ public class AuthorizeConfigManager implements ReactiveAuthorizationManager<Auth
 	@Override
 	public Mono<AuthorizationDecision> check(Mono<Authentication> authentication,
 	                                         AuthorizationContext authorizationContext) {
-
+		String token = authorizationContext.getExchange().getRequest().getHeaders().getFirst("ifc-token");
+		log.info("AuthorizeConfigManager:{}", token);
 
 		return authentication.map(auth -> {
 			ServerWebExchange exchange = authorizationContext.getExchange();

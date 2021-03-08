@@ -5,6 +5,7 @@ import com.nic.cloud.commons.base.api.ApiResult;
 import com.nic.cloud.feign.UserFeignApi;
 import com.nic.cloud.model.User;
 import com.nic.cloud.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2021-02-03 15:46
  */
 @RestController
+@Slf4j
 public class UserFeignClient implements UserFeignApi {
 
 	@Autowired
@@ -26,6 +28,8 @@ public class UserFeignClient implements UserFeignApi {
 
 	@Override
 	public ApiResult getUser() {
+//		MyUserDetails principal = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		log.info("principal:{}", JSONUtil.toJsonStr(principal));
 		return ApiResult.result("feign..." + serverPort);
 	}
 

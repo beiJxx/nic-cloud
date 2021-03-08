@@ -14,6 +14,8 @@ import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 import org.springframework.security.web.server.authentication.AuthenticationWebFilter;
+import org.springframework.security.web.server.context.ServerSecurityContextRepository;
+import org.springframework.security.web.server.context.WebSessionServerSecurityContextRepository;
 
 import java.util.LinkedList;
 
@@ -88,6 +90,15 @@ public class SecurityConfig {
 		return new DelegatingReactiveAuthenticationManager(managers);
 	}
 
+	/**
+	 * 将登陆后的用户及权限信息存入session中
+	 *
+	 * @return
+	 */
+	@Bean
+	ServerSecurityContextRepository serverSecurityContextRepository() {
+		return new WebSessionServerSecurityContextRepository();
+	}
 
 	/**
 	 * BCrypt密码编码

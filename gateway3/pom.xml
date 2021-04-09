@@ -37,7 +37,7 @@
         <dependency>
             <groupId>com.nic.cloud</groupId>
             <artifactId>nic-cloud-commons-base</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate.validator</groupId>

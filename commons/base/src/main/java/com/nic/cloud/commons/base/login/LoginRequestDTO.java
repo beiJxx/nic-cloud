@@ -2,8 +2,6 @@ package com.nic.cloud.commons.base.login;
 
 import lombok.Data;
 
-import javax.validation.constraints.NotBlank;
-
 /**
  * Description:
  *
@@ -13,9 +11,9 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class LoginRequestDTO {
 
-	@NotBlank(message = "用户名不能为空")
+	//		@NotBlank(message = "用户名不能为空")
 	private String username;
-	@NotBlank(message = "密码不能为空")
+	//		@NotBlank(message = "密码不能为空")
 	private String password;
 
 }

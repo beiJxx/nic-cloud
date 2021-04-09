@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nic.cloud.mapper.FaDeviceInfoMapper">
+  <resultMap id="BaseResultMap" type="com.nic.cloud.model.FaDeviceInfo">
+    <!--@mbg.generated-->
+    <!--@Table `fa_device_info`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+    <result column="device_key" jdbcType="VARCHAR" property="deviceKey" />
+    <result column="mac" jdbcType="VARCHAR" property="mac" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="type_id" jdbcType="INTEGER" property="typeId" />
+    <result column="product_code" jdbcType="VARCHAR" property="productCode" />
+    <result column="version" jdbcType="VARCHAR" property="version" />
+    <result column="technical_parameter" jdbcType="VARCHAR" property="technicalParameter" />
+    <result column="group_id" jdbcType="INTEGER" property="groupId" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <result column="longitude" jdbcType="VARCHAR" property="longitude" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="cimages" jdbcType="VARCHAR" property="cimages" />
+    <result column="createtime" jdbcType="INTEGER" property="createtime" />
+    <result column="updatetime" jdbcType="INTEGER" property="updatetime" />
+    <result column="act_time" jdbcType="INTEGER" property="actTime" />
+    <result column="online_status" jdbcType="BOOLEAN" property="onlineStatus" />
+    <result column="is_deleted" jdbcType="OTHER" property="isDeleted" />
+    <result column="status" jdbcType="OTHER" property="status" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    `id`, `device_id`, `device_key`, `mac`, `name`, `type_id`, `product_code`, `version`, 
+    `technical_parameter`, `group_id`, `location`, `latitude`, `longitude`, `remark`, 
+    `cimages`, `createtime`, `updatetime`, `act_time`, `online_status`, `is_deleted`, 
+    `status`
+  </sql>
+</mapper>

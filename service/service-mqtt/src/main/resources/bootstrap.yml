@@ -16,9 +16,11 @@ spring:
     host: 192.168.0.118
     password: 123456
   datasource:
-    url: jdbc:mysql://192.168.0.118:3306/nic_cloud
+    #    url: jdbc:mysql://192.168.0.118:3306/nic_cloud
+    url: jdbc:mysql://192.168.0.121:3306/fcity
     username: root
     password: 123456
+    #    url: jdbc:mysql://47.103.39.44:3306/fcity
+    #    username: fcity
+    #    password: Za123456
     driver-class-name: com.mysql.jdbc.Driver
-mqtt:
-  username: 123

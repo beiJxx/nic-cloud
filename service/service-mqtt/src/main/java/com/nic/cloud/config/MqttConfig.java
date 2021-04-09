@@ -3,7 +3,7 @@ package com.nic.cloud.config;
 import com.nic.cloud.handler.TopicHandler;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang.StringUtils;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -180,8 +180,8 @@ public class MqttConfig {
 			adapter = new MqttPahoMessageDrivenChannelAdapter(consumerClientId, mqttClientFactory(), StringUtils.split(consumerDefaultTopic, ","));
 		}
 		Arrays.stream(topic).forEach(k -> {
-			addTopic(k);
-			addTopic(k + "/ack");
+//			addTopic(k);
+			addTopic(k + "/Ack");
 		});
 //		adapter.removeTopic();
 	}

@@ -34,6 +34,7 @@ public class AuthenticationConverter extends ServerFormLoginAuthenticationConver
 		HttpHeaders headers = exchange.getRequest().getHeaders();
 		String tenant = headers.getFirst("_tenant");
 		String host = headers.getHost().getHostName();
+		log.info("host:{}", host);
 		Flux<DataBuffer> body = exchange.getRequest().getBody();
 		return body.next().map(data -> {
 			CharBuffer charBuffer = StandardCharsets.UTF_8.decode(data.asByteBuffer());

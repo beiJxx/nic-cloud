@@ -19,7 +19,7 @@
         <dependency>
             <groupId>com.nic.cloud</groupId>
             <artifactId>nic-cloud-commons-starter</artifactId>
-            <version>${version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

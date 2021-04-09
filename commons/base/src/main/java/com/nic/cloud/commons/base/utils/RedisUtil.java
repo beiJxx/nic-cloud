@@ -74,6 +74,7 @@ public class RedisUtil {
 	 */
 	public boolean extendExpire(String key, Long expire) {
 		return stringRedisTemplate.expire(formatKey(key), Duration.ofMinutes(expire));
+//		return stringRedisTemplate.expire(formatKey(key), expire, TimeUnit.MINUTES);
 	}
 
 }

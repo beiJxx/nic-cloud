@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.nic.cloud.mapper.FaDeviceOperateLogMapper">
+  <resultMap id="BaseResultMap" type="com.nic.cloud.model.FaDeviceOperateLog">
+    <!--@mbg.generated-->
+    <!--@Table `fa_device_operate_log`-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="message_id" jdbcType="VARCHAR" property="messageId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="device_id" jdbcType="INTEGER" property="deviceId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="max_send_count" jdbcType="INTEGER" property="maxSendCount" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="useragent" jdbcType="VARCHAR" property="useragent" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="status" jdbcType="OTHER" property="status" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    `id`, `message_id`, `user_id`, `device_id`, `username`, `url`, `title`, `content`, 
+    `max_send_count`, `ip`, `useragent`, `createtime`, `status`, `update_time`
+  </sql>
+</mapper>
